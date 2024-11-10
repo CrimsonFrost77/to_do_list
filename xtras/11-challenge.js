@@ -5,16 +5,22 @@ document
 
 //function to find min-max among the given numbers
 function findMinMax() {
-  const inputNumbersString = document.getElementById("numbers").value;
-  // console.log(inputNumbersString);
-  // console.log(inputNumbersString.split(" "));
+  const inputString = document.getElementById("numbers").value;
+  const trimmedInput = inputString.trim(); //for cases when there are spaces at the beginning or end of the input
+  // console.log("Trimmed Input: " + trimmedInput);
+  // console.log("Input String Length: " + inputString.length);
+  // console.log("Trimmed Input Length: " + trimmedInput.length);
 
-  //split the input string into array of numbers
-  const inputNumbers = inputNumbersString.split(" ").map(Number);
-  // console.log(inputNumbers);
+  if (!trimmedInput) {
+    document.getElementById("min-max-result").innerText =
+      "No numbers provided!";
+    return;
+  }
+  const inputNumbers = trimmedInput.split(", ").map(Number);
 
   let min = inputNumbers[0];
   let max = inputNumbers[0];
+
   for (let i = 1; i < inputNumbers.length; i++) {
     if (inputNumbers[i] < min) {
       min = inputNumbers[i];
@@ -23,7 +29,6 @@ function findMinMax() {
     }
   }
 
-  // console.log(min, max);
   document.getElementById(
     "min-max-result"
   ).innerText = `Min: ${min}, Max: ${max}`;
