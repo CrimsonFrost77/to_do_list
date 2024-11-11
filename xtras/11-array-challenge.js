@@ -1,5 +1,16 @@
 let ingredients = ["egg", "apple", "egg", "banana", "egg", "egg", "egg", "egg"];
 
+//function to remove all instances of egg from an array
+function removeAllEgg(array) {
+  const newArray = [];
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] !== "egg") {
+      newArray.push(array[i]);
+    }
+  }
+  return newArray;
+}
+
 //function takes an array of strings and
 //returns an array after removing the first 2 instances
 //of the word 'egg'
@@ -74,7 +85,22 @@ function findFirstOccurrence(array, word) {
   return -1;
 }
 
-console.log(ingredients);
-console.log(findFirstOccurrence(ingredients, "ham")); // -1
-console.log(findFirstOccurrence(ingredients, "banana")); // 3
-console.log(findFirstOccurrence(ingredients, "egg")); // 0
+// console.log(ingredients);
+// console.log(findFirstOccurrence(ingredients, "ham")); // -1
+// console.log(findFirstOccurrence(ingredients, "banana")); // 3
+// console.log(findFirstOccurrence(ingredients, "egg")); // 0
+//console.log(removeAllEgg(ingredients));
+
+//function to remove duplicates in an array
+//takes in an array of strings
+function removeDuplicates(array) {
+  const newArray = [];
+  for (let i = 0; i < array.length; i++) {
+    if (findFirstOccurrence(newArray, array[i]) === -1) {
+      newArray.push(array[i]);
+    }
+  }
+  return newArray;
+}
+
+// console.log(removeDuplicates(ingredients));
