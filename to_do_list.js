@@ -1,15 +1,18 @@
 const taskList = [];
-document.getElementById("add-button").addEventListener("click", addTask);
+document.getElementById("add-task-button").addEventListener("click", addTask);
 
 function addTask() {
-  const task = document.getElementById("to-do-input").value;
-  const taskDueDate = document.getElementById("date-input").value;
+  let taskInputElement = document.getElementById("to-do-input");
+  const task = taskInputElement.value;
+  let dueDateElement = document.getElementById("date-input");
+  const taskDueDate = dueDateElement.value;
 
   taskList.push({
     task,
     taskDueDate,
   });
-
+  taskInputElement.value = "";
+  dueDateElement.value = "";
   renderTasks(taskList);
 }
 
@@ -21,11 +24,13 @@ function renderTasks(taskList) {
     const task = taskList[i];
 
     renderedTasks += `
-      <p>
-        ${task.task}
-        ${task.taskDueDate}
-        <button onclick="deleteTask(${i})">Delete</button>
-      </p>
+        <div>
+          ${task.task}
+        </div>
+        <div>
+          ${task.taskDueDate}
+        </div>
+        <button class="delete-task-button" onclick="deleteTask(${i})">Delete</button>
     `;
   }
   taskListContainer.innerHTML = renderedTasks;
